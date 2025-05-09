@@ -105,8 +105,12 @@ export default function AstronautChatbot() {
         }
       }
 
-      const botMessage: Message = { id: messages.length + 2, text: botResponse, sender: "bot" as const }
-    setMessages((prev) => [...prev, botMessage])
+      const botMessage: Message = {
+        id: messages.length + 2,
+        text: botResponse as string,
+        sender: "bot" as const
+      }
+      setMessages((prev) => [...prev, botMessage])
       setIsTyping(false)
 
       // Return to idle state after talking
