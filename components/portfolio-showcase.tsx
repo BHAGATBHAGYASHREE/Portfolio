@@ -67,9 +67,9 @@ export default function PortfolioShowcase() {
       color: "from-gray-300 to-white",
     },
     {
-      title: "Loan Management UI",
+      title: "RentEase UI",
       description:
-        "Professional loan management system interface with loan application, approval workflow, and dashboard",
+        "Car rental platform built with React.js and JSON for storage, featuring seamless booking, driver hiring, car delivery, and a user-friendly UI/UX designed in Figma",
       image: "/figmarentease.png",
       category: "Design",
       status: "Completed",
