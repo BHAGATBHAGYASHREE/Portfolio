@@ -121,7 +121,7 @@ export default function AboutSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <motion.h1
-            className="text-6xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-300 to-white"
+            className="text-6xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-300 to-white"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
