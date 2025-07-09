@@ -29,7 +29,7 @@ export default function PortfolioShowcase() {
       image: "/rentease.png",
       category: "Web",
       status: "Completed",
-      demoUrl: "https://rent-ease-navy.vercel.app/",
+      demoUrl: "https://rent-ease-navy.vercel.app/" ,
       codeUrl: "#",
       color: "from-gray-300 to-white",
     },
