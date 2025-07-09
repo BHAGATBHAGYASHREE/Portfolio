@@ -49,7 +49,7 @@ const container = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring" as AnimationGeneratorType,
+      type: "spring" as const, // <-- Fix
       stiffness: 100,
       damping: 20,
     },
