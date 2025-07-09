@@ -4,6 +4,7 @@ import { Building, GraduationCap } from "lucide-react"
 import { motion, useScroll, useTransform, easeInOut } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { Variants } from "framer-motion"
 
 export default function EducationJourney() {
   const ref = useRef(null)
@@ -28,20 +29,19 @@ const timelineAnimation = {
 }
 
 
-  const cardAnimation = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.1 * i,
-        duration: 0.5,
-        type: "spring",
-        stiffness: 100,
-      },
-    }),
-  }
-
+  const cardAnimation: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.5,
+      type: "spring" as const, // <-- Type assertion to fix type error
+      stiffness: 100,
+    },
+  }),
+};
   const circleAnimation = {
     hidden: { scale: 0 },
     visible: (i: number) => ({
