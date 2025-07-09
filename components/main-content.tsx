@@ -1,5 +1,5 @@
 "use client"
-
+import type { AnimationGeneratorType } from "framer-motion";
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import PortfolioShowcase from "./portfolio-showcase"
@@ -43,16 +43,18 @@ export default function MainContent() {
   if (!mounted) return null
 
   // Stagger children animations
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
+const container = {
+  hidden: { opacity: 0, y: 50 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as AnimationGeneratorType,
+      stiffness: 100,
+      damping: 20,
     },
-  }
+  },
+};
 
   const item = {
     hidden: { opacity: 0, y: 20 },
