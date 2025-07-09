@@ -1,7 +1,7 @@
 "use client"
 
 import { Building, GraduationCap } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, easeInOut } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
@@ -16,13 +16,13 @@ export default function EducationJourney() {
   // Star trail that follows scroll progress - fixed to move with the timeline
   const starTrailY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
- const timelineAnimation = {
-  hidden: { height: "0px" }, // ✅ Corrected
+const timelineAnimation = {
+  hidden: { height: "0px" },
   visible: {
     height: "100%",
     transition: {
       duration: 1.5,
-      ease: "easeInOut",
+      ease: easeInOut, // <--- fix here
     },
   },
 }
