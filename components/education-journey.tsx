@@ -16,16 +16,17 @@ export default function EducationJourney() {
   // Star trail that follows scroll progress - fixed to move with the timeline
   const starTrailY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
-  const timelineAnimation = {
-    hidden: { height: 0 },
-    visible: {
-      height: "100%",
-      transition: {
-        duration: 1.5,
-        ease: "easeInOut",
-      },
+ const timelineAnimation = {
+  hidden: { height: "0px" }, // ✅ Corrected
+  visible: {
+    height: "100%",
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut",
     },
-  }
+  },
+}
+
 
   const cardAnimation = {
     hidden: { opacity: 0, y: 50 },
