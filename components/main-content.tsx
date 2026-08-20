@@ -40,27 +40,27 @@ export default function MainContent() {
 
   if (!mounted) return null
 
-  // Stagger children animations with strict type annotation
-  const container: Variants = {
+  // Stagger children animations
+  const container = {
     hidden: { opacity: 0, y: 50 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 20,
       },
     },
   }
 
-  const item: Variants = {
+  const item = {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 15,
       },
