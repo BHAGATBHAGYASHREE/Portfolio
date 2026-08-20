@@ -1,5 +1,6 @@
 "use client"
-import type { AnimationGeneratorType } from "framer-motion";
+
+import type { Variants } from "framer-motion"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import PortfolioShowcase from "./portfolio-showcase"
@@ -20,8 +21,6 @@ export default function MainContent() {
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-
-      // Determine active section based on scroll position
       const sections = document.querySelectorAll("section[id]")
 
       sections.forEach((section) => {
@@ -41,21 +40,21 @@ export default function MainContent() {
 
   if (!mounted) return null
 
-  // Stagger children animations
-  const container = {
+  // Stagger children animations with strict type annotation
+  const container: Variants = {
     hidden: { opacity: 0, y: 50 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         stiffness: 100,
         damping: 20,
       },
     },
-  };
+  }
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
