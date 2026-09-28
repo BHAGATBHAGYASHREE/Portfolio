@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { Rocket, Compass, FileText, Mountain } from "lucide-react"
+import { Rocket, Compass, FileText, Mountain, ArrowUp } from "lucide-react"
 import { useTheme } from "next-themes"
 import SocialDock from "./social-dock"
+import ResumeModal from "./resume-modal"
 
 export default function FooterSpace() {
   const [currentTime, setCurrentTime] = useState<string>("")
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
   const { theme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -83,25 +85,20 @@ export default function FooterSpace() {
           </div>
 
           <div className="flex flex-col xs:flex-row items-center gap-3 sm:gap-4 w-full xs:w-auto justify-center flex-shrink-0">
-            <a
-              href="/Bhagyashree.pdf"
-              download
+            <button
+              onClick={() => setIsResumeOpen(true)}
               className="w-full xs:w-auto px-5 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 border border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/40 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm flex-shrink-0"
             >
               <FileText className="w-4 h-4 text-slate-900 dark:text-white" />
               <span>Resume Sheet</span>
-            </a>
+            </button>
 
             <button
               onClick={scrollToTop}
               className="w-full xs:w-auto px-5 py-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-slate-200 border border-slate-800 dark:border-white/40 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md dark:shadow-[0_0_20px_rgba(255,255,255,0.3)] group flex-shrink-0"
             >
-              <span>{isLight ? "Back To Summit" : "Back To Orbit"}</span>
-              {isLight ? (
-                <Mountain className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform text-sky-400" />
-              ) : (
-                <Rocket className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-              )}
+              <span>Back To Start</span>
+              <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>
         </div>
@@ -167,6 +164,8 @@ export default function FooterSpace() {
           </p>
         </div>
       </div>
+      {/* Interactive Printable Resume Modal */}
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </footer>
   )
 }
