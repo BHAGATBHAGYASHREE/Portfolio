@@ -8,8 +8,18 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Bhagyashree Bhagat Portfolio",
-  description: "Bhagyashree Bhagat Portfolio",
+  title: "Bhagyashree Bhagat | AI & Data Science Portfolio",
+  description: "Portfolio of Bhagyashree Bhagat — Data Science, AI/ML models, and Full-Stack Engineering.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [
+      { url: "/apple-icon.png" },
+    ],
+  },
 }
 
 export default function RootLayout({
