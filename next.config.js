@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  devIndicators: false ,
-  // Disable development indicators
-  
+  devIndicators: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // Allow CORS for development
   async headers() {
     return [

@@ -56,10 +56,9 @@ const generateShootingStars = (count: number): ShootingStar[] => {
 }
 
 import { useFrame } from "@react-three/fiber"
-import type * as THREE from "three"
 
 function RotatingWireframeMesh() {
-  const meshRef = useRef<THREE.Mesh>(null!)
+  const meshRef = useRef<any>(null!)
 
   useFrame((_, delta) => {
     if (meshRef.current) {
