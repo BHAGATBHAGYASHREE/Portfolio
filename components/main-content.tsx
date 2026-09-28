@@ -10,7 +10,10 @@ import EducationJourney from "./education-journey"
 import WorkExperience from "./work-experience"
 import SkillsExpertise from "./skills-expertise"
 import ContactSection from "./contact-section"
+import FooterSpace from "./footer-space"
 import Navbar from "./navbar"
+import { Cursor3D } from "./cursor-3d"
+import { Section3DWrapper } from "./section-3d-wrapper"
 
 export default function MainContent() {
   const [mounted, setMounted] = useState(false)
@@ -40,16 +43,13 @@ export default function MainContent() {
 
   if (!mounted) return null
 
-  // Stagger children animations
+  // Stagger children animations without sticky-breaking transforms
   const container = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 20,
+        staggerChildren: 0.1,
       },
     },
   }
@@ -68,37 +68,42 @@ export default function MainContent() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-transparent dark:bg-black text-slate-900 dark:text-white transition-colors duration-500 relative">
+      <Cursor3D />
       <Navbar />
       <motion.div className="w-full" variants={container} initial="hidden" animate="show">
         <motion.div variants={item} className="min-h-screen w-full">
           <AboutSection />
         </motion.div>
 
-        <motion.div variants={item} className="w-full flex items-center justify-center">
+        <Section3DWrapper>
           <AboutPhilosophy />
-        </motion.div>
+        </Section3DWrapper>
 
-        <motion.div variants={item} id="work" className="min-h-screen flex items-center justify-center">
+        <Section3DWrapper id="work">
           <WorkExperience />
-        </motion.div>
+        </Section3DWrapper>
 
-        <motion.div variants={item} id="education" className="min-h-screen flex items-center justify-center">
+        <Section3DWrapper id="education">
           <EducationJourney />
-        </motion.div>
+        </Section3DWrapper>
 
-        <motion.div variants={item} id="skills" className="min-h-screen flex items-center justify-center">
+        <Section3DWrapper id="skills">
           <SkillsExpertise />
-        </motion.div>
+        </Section3DWrapper>
 
-        <motion.div variants={item} id="projects" className="min-h-screen flex items-center justify-center">
+        <div id="projects" className="w-full relative">
           <PortfolioShowcase />
-        </motion.div>
+        </div>
 
-        <motion.div variants={item} id="contact" className="min-h-screen flex items-center justify-center">
+        <Section3DWrapper id="contact">
           <ContactSection />
-        </motion.div>
+        </Section3DWrapper>
+
+        {/* Aesthetic Space Theme Footer with Monumental BHAGYASHREE Typography */}
+        <FooterSpace />
       </motion.div>
     </div>
   )
 }
+

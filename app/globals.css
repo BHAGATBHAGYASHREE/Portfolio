@@ -3,8 +3,25 @@
 @tailwind utilities;
 
 :root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+.dark {
   --background: #000000;
   --foreground: #ffffff;
+}
+
+html {
+  font-size: 16.5px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 17px;
+  }
 }
 
 body {
@@ -13,7 +30,12 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: "Inter", sans-serif;
-  overflow-x: hidden;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .loader {
@@ -325,4 +347,12 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #444, #888);
+}
+
+/* Footer Monumental Plain Typography */
+html:not(.dark) .footer-monumental-text {
+  fill: url(#footerNameGradientLight) !important;
+}
+html.dark .footer-monumental-text {
+  fill: url(#footerNameGradientDark) !important;
 }

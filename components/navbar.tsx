@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Mail, ChevronDown } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -10,6 +11,14 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("home")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -71,7 +80,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Left Fixed Location Text (Pure text) */}
+      {/* Top Left Fixed Location Text */}
       <motion.div
         className="fixed top-9 sm:top-10 left-6 sm:left-10 z-50 text-xs sm:text-sm font-medium tracking-widest text-gray-300 uppercase cursor-pointer pointer-events-auto select-none"
         initial={{ opacity: 0, x: -30 }}
@@ -81,6 +90,16 @@ export default function Navbar() {
         onClick={() => handleLinkClick("home")}
       >
         NAVI MUMBAI, IN
+      </motion.div>
+
+      {/* Top Right Fixed Theme Toggle (Desktop Only) */}
+      <motion.div
+        className="fixed top-7 sm:top-8 right-6 sm:right-10 z-50 pointer-events-auto hidden md:block"
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <ThemeToggle />
       </motion.div>
 
       {/* Dynamic Morphing Island / Notch Navbar */}
@@ -105,11 +124,19 @@ export default function Navbar() {
               ? "bg-black/90 border-white/20 shadow-black/90"
               : "bg-black/60 border-white/15"
           }`}
-          style={{
-            width: showFullMenu ? "100%" : "auto",
-            maxWidth: showFullMenu ? "64rem" : "18rem",
-            padding: "0.5rem 1rem",
-          }}
+          style={
+            !isMobile
+              ? {
+                  width: showFullMenu ? "100%" : "auto",
+                  maxWidth: showFullMenu ? "64rem" : "18rem",
+                  padding: "0.5rem 1rem",
+                }
+              : {
+                  width: "100%",
+                  maxWidth: "calc(100vw - 1.5rem)",
+                  padding: "0.5rem 0.75rem",
+                }
+          }
         >
           {/* Left Profile Avatar & Status Pill */}
           <motion.div
@@ -148,7 +175,7 @@ export default function Navbar() {
           <motion.nav
             layout
             className="hidden md:flex items-center gap-1 sm:gap-1.5 whitespace-nowrap overflow-hidden"
-            style={{ opacity: showFullMenu ? 1 : 0, display: showFullMenu ? "flex" : "none" }}
+            style={{ opacity: showFullMenu ? 1 : 0, display: !isMobile && showFullMenu ? "flex" : "none" }}
             transition={{ duration: 0.3 }}
           >
             {navLinks.map((link) => {
@@ -183,7 +210,7 @@ export default function Navbar() {
           {/* Right Action Button ("Work with me") */}
           <div
             className="hidden md:flex items-center flex-shrink-0"
-            style={{ opacity: showFullMenu ? 1 : 0, display: showFullMenu ? "flex" : "none" }}
+            style={{ opacity: showFullMenu ? 1 : 0, display: !isMobile && showFullMenu ? "flex" : "none" }}
           >
             <motion.a
               href="#contact"
@@ -200,15 +227,31 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden text-white p-2 ml-auto"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </motion.button>
+          {/* Mobile Right Controls: Compact "Work with me" + Menu Toggle (Mobile Only) */}
+          <div className="md:hidden flex items-center gap-2 ml-auto flex-shrink-0">
+            <motion.a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                handleLinkClick("contact")
+              }}
+              className="px-3.5 py-1.5 rounded-full bg-white text-black text-xs font-bold tracking-tight flex items-center gap-1.5 hover:bg-gray-200 transition-all shadow-md cursor-pointer whitespace-nowrap"
+              whileTap={{ scale: 0.95 }}
+            >
+              <Mail className="w-3.5 h-3.5 fill-black stroke-black" />
+              <span>Work with me</span>
+            </motion.a>
+
+            <motion.button
+              className="text-white p-1.5 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </motion.button>
+          </div>
         </motion.div>
 
         {/* Mobile Dropdown Menu */}
@@ -238,6 +281,11 @@ export default function Navbar() {
                     {link.label}
                   </motion.a>
                 ))}
+
+                <div className="flex items-center justify-between pt-2 border-t border-slate-800 dark:border-slate-800">
+                  <span className="text-xs text-gray-400 font-medium">Switch Theme</span>
+                  <ThemeToggle />
+                </div>
 
                 <motion.a
                   href="#contact"
