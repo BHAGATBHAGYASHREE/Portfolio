@@ -5,7 +5,7 @@ import "./globals.css"
 import EmailJSInitializer from "@/components/ui/emailjs-initializer"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-bhagyashree.vercel.app"),
