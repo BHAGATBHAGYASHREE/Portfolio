@@ -170,10 +170,10 @@ export default function AboutSection() {
             <span className="truncate">Available for Internships & Full-Time Roles</span>
           </div>
 
-          {/* Main Headline Title (Responsive sizing to prevent mobile clipping) */}
+          {/* Main Headline Title (Crisp, refined sizing) */}
           <motion.h1
             style={{ scale: heroScale, filter: titleFilter }}
-            className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-extrabold tracking-tight text-slate-950 dark:text-white mb-3 sm:mb-5 drop-shadow-[0_2px_14px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] whitespace-normal sm:whitespace-nowrap break-words origin-center transition-colors"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-extrabold tracking-tight text-slate-950 dark:text-white mb-3 sm:mb-4 drop-shadow-[0_2px_14px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] whitespace-normal sm:whitespace-nowrap break-words origin-center transition-colors"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -181,10 +181,10 @@ export default function AboutSection() {
             Hi. I’m Bhagyashree.
           </motion.h1>
 
-          {/* Subtitle Text (Responsive font and line spacing) */}
+          {/* Subtitle Text (Balanced proportions) */}
           <motion.p
             style={{ scale: subtitleScale, filter: subtitleFilter }}
-            className="text-sm xs:text-base sm:text-xl md:text-2xl font-medium dark:font-normal text-slate-800 dark:text-neutral-100 max-w-3xl leading-relaxed mb-5 sm:mb-7 px-2 sm:px-4 origin-center drop-shadow-[0_1px_8px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] transition-colors"
+            className="text-sm sm:text-base md:text-lg font-normal text-slate-700 dark:text-neutral-300 max-w-2xl leading-relaxed mb-6 px-4 origin-center drop-shadow-[0_1px_8px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] transition-colors"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -192,7 +192,7 @@ export default function AboutSection() {
             I specialize in turning data and technology into intelligent, scalable solutions through Data Science, AI/ML, and full-stack development.
           </motion.p>
 
-          {/* Action Buttons (Full-width friendly on small mobile) */}
+          {/* Action Buttons */}
           <motion.div
             style={{ scale: buttonsScale }}
             className="flex flex-col xs:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0 mb-4 sm:mb-6 origin-center"
@@ -202,7 +202,7 @@ export default function AboutSection() {
           >
             <motion.button
               onClick={scrollToProjects}
-              className="w-full xs:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm sm:text-base font-bold flex items-center justify-center gap-2.5 hover:bg-slate-800 dark:hover:bg-gray-200 transition-all shadow-xl cursor-pointer"
+              className="w-full xs:w-auto px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-slate-800 dark:hover:bg-gray-200 transition-all shadow-xl cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -212,7 +212,7 @@ export default function AboutSection() {
 
             <motion.button
               onClick={() => setIsResumeOpen(true)}
-              className="w-full xs:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white dark:bg-gray-900/80 backdrop-blur-md border border-slate-300 dark:border-white/20 text-slate-900 dark:text-white text-sm sm:text-base font-semibold flex items-center justify-center gap-2.5 hover:bg-slate-100 dark:hover:bg-gray-800 transition-all shadow-xl cursor-pointer"
+              className="w-full xs:w-auto px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-white dark:bg-gray-900/80 backdrop-blur-md border border-slate-300 dark:border-white/20 text-slate-900 dark:text-white text-xs sm:text-sm font-medium flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-gray-800 transition-all shadow-xl cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
