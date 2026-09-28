@@ -3,8 +3,10 @@ services:
     name: portfolio-bhagyashree
     env: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --legacy-peer-deps && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_VERSION
         value: 20
+      - key: NPM_FLAGS
+        value: "--legacy-peer-deps"
